@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.feature "UserCanSeeCats", type: :feature do
+RSpec.feature 'UserCanSeeCats', type: :feature do
   let(:user) { create :user, password: 'Secret123', password_confirmation: 'Secret123' }
 
   scenario 'user open site and cant see the cat, but after login he can' do
