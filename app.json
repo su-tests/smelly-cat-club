@@ -4,6 +4,6 @@
   "repository": "https://github.com/su-tests/smelly-cat-club.git",
   "keywords": ["ruby", "cat", "ruby on rails", "rspec"],
   "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
+    "postdeploy": "bundle exec rake db:setup"
   }
 }
