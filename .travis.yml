@@ -12,6 +12,5 @@ env:
   - CODECLIMATE_REPO_TOKEN=c308d26a3ffd8355c025e2cad7e5919ae2b4d67709ae85c91bf859076435b1bb
 
 script:
-  - bundle exec rubocop
   - bundle exec rake
   - bundle exec codeclimate-test-reporter
