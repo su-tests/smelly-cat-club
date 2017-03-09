@@ -37,8 +37,8 @@ gem 'devise'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -54,6 +54,6 @@ end
 
 group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
-  gem 'simplecov'
   gem 'database_cleaner'
+  gem 'simplecov'
 end
