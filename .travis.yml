@@ -8,4 +8,4 @@ gemfile:
 
 cache: bundler
 
-script: "rake"
+script: "bundle exec rake"
