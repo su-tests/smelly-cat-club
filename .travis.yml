@@ -14,3 +14,4 @@ env:
 script:
   - bundle exec rubocop
   - bundle exec rake
+  - bundle exec codeclimate-test-reporter
