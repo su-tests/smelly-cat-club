@@ -4,6 +4,7 @@ Rails:
   Enabled: true
 
 AllCops:
+  DisplayCopNames: true
   Exclude:
     - db/schema.rb
     - db/migrate/*
@@ -11,3 +12,7 @@ AllCops:
 
 Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"
