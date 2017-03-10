@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
 RSpec.describe InvitationGenerator, type: :model do
@@ -9,7 +10,7 @@ RSpec.describe InvitationGenerator, type: :model do
     it 'should generate an invitation' do
       expect do
         invitation_generator.generate!
-      end.to change{ Invitation.where(issuer_id: issuer.id).count }.by(1)
+      end.to change { Invitation.where(issuer_id: issuer.id).count }.by(1)
     end
 
     describe 'invitation' do
@@ -28,7 +29,7 @@ RSpec.describe InvitationGenerator, type: :model do
       it 'should not generate a duplicate' do
         expect do
           invitation_generator.generate!
-        end.not_to change{ Invitation.count }
+        end.not_to change { Invitation.count }
       end
     end
   end
