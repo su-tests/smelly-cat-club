@@ -1,3 +1,5 @@
+require 'digest'
+
 class InvitationGenerator
   def initialize(issuer:, email:)
     @issuer = issuer
@@ -5,12 +7,21 @@ class InvitationGenerator
   end
 
   def generate!
-    Invitation.create! issuer: @issuer, email: @email, token: token
+    invitation = Invitation.find_or_initialize_by token: token
+
+    invitation.issuer = @issuer
+    invitation.email = @email
+
+    invitation.save!
+
+    invitation
   end
 
   private
 
   def token
-    "#{Time.now.to_f}#{rand}"
+    Digest::SHA256.hexdigest(
+      [Rails.application.secrets[:secret_key_base], @email].join
+    )
   end
 end

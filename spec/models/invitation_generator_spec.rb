@@ -19,5 +19,17 @@ RSpec.describe InvitationGenerator, type: :model do
       its(:email) { is_expected.to eq email }
       its(:token) { is_expected.to be_present }
     end
+
+    context 'when invitation is already generated' do
+      before do
+        invitation_generator.generate!
+      end
+
+      it 'should not generate a duplicate' do
+        expect do
+          invitation_generator.generate!
+        end.not_to change{ Invitation.count }
+      end
+    end
   end
 end
