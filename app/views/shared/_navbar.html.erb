@@ -1,0 +1,19 @@
+<div class="top-bar">
+  <div class="top-bar-title">
+    <strong>Smelly Cat Club</strong>
+  </div>
+  <div id="responsive-menu">
+    <div class="top-bar-right">
+      <ul class="menu">
+        <% if user_signed_in? %>
+          <li>Hello <%= current_user.email %>!</li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              Log out
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
