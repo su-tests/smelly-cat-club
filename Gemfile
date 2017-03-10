@@ -50,6 +50,7 @@ group :development do
   gem 'rubocop-rspec', require: false
   gem 'spring'
   gem 'spring-commands-rspec'
+  gem 'letter_opener'
 end
 
 group :test do
