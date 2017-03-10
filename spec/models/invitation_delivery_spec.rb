@@ -12,10 +12,33 @@ RSpec.describe InvitationDelivery, type: :model do
   end
 
   context 'when email has been sent' do
-    it 'does not send notifications too ofter'
+    let(:first_notification_sent_at) { Time.zone.now }
 
-    context 'when N days passed' do
-      it 'should send email again'
+    before do
+      Timecop.travel first_notification_sent_at
+      invitation_delivery.deliver!
+    end
+
+    after { Timecop.return }
+
+    it 'does not send notifications too ofter' do
+      Timecop.travel first_notification_sent_at + 12.hours
+
+      expect do
+        invitation_delivery.deliver!
+      end.not_to change { InvitationMailer.deliveries.count }
+    end
+
+    context 'when 24 hours passed' do
+      before do
+        Timecop.travel first_notification_sent_at + 25.hours
+      end
+
+      it 'should send email again' do
+        expect do
+          invitation_delivery.deliver!
+        end.to change { InvitationMailer.deliveries.count }.by(1)
+      end
     end
   end
 end

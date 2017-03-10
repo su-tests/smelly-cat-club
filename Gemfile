@@ -59,4 +59,5 @@ group :test do
   gem 'codeclimate-test-reporter', '~> 1.0.0'
   gem 'database_cleaner'
   gem 'simplecov'
+  gem 'timecop'
 end
