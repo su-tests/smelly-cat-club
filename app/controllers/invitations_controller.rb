@@ -5,7 +5,6 @@ class InvitationsController < ApplicationController
   end
 
   def new
-    @invitations = Invitation.new(issuer: current_user)
   end
 
   def create

@@ -1,2 +1,8 @@
-<h1>Invitations#new</h1>
-<p>Find me in app/views/invitations/new.html.erb</p>
+<h1>Invitate Your Friend</h1>
+
+<%= form_tag invitations_path do %>
+  <%= label_tag 'invitation[email]', 'Email' %>
+  <%= email_field_tag 'invitation[email]', nil, placeholder: 'email' %>
+
+  <%= submit_tag 'Invite', class: 'button' %>
+<% end %>
