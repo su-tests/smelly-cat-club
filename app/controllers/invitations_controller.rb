@@ -4,8 +4,7 @@ class InvitationsController < ApplicationController
     @invitations = Invitation.where(issuer: current_user)
   end
 
-  def new
-  end
+  def new; end
 
   def create
     invitation_generator = InvitationGenerator.new(issuer: current_user, email: invitation_params[:email])
