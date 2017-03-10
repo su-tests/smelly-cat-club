@@ -22,10 +22,14 @@ RSpec.describe InvitationsController, type: :controller do
   describe 'POST #create' do
     it 'should create an invitation' do
       expect do
-        post :create, params: { invitation: { email: 'foo@example.com' } }
+        post :create, { invitation: { email: 'foo@example.com' } }
       end.to change { Invitation.where(issuer: current_user).count }.by(1)
+    end
 
-      expect(response).to have_http_status(:redirect)
+    it 'should send an invitation' do
+      expect do
+        post :create, { invitation: { email: 'foo@example.com' } }
+      end.to change { InvitationMailer.deliveries.count }.by(1)
     end
   end
 end

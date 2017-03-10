@@ -11,6 +11,9 @@ class InvitationsController < ApplicationController
     invitation_generator = InvitationGenerator.new(issuer: current_user, email: invitation_params[:email])
     invitation = invitation_generator.generate!
 
+    invitation_delivery = InvitationDelivery.new invitation
+    invitation_delivery.deliver!
+
     flash[:info] = "Invitation sent to #{invitation.email}"
 
     redirect_to invitations_path
