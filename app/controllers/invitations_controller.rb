@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class InvitationsController < ApplicationController
   def index
     @invitations = Invitation.where(issuer: current_user)
