@@ -15,3 +15,7 @@ bundle install
 rake db:setup
 rails server
 ```
+
+## Demo
+
+![](demo.gif)
