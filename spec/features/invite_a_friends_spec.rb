@@ -13,5 +13,9 @@ RSpec.feature 'InviteAFriends', type: :feature do
 
     fill_in 'Email', with: 'my.friend@example.com'
     click_button 'Invite'
+
+    within '.invitations' do
+      expect(page).to have_css '.invitation .email', text: 'my.friend@example.com'
+    end
   end
 end
