@@ -1,13 +1,7 @@
 # frozen_string_literal: true
 class InvitationMailer < ApplicationMailer
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.invitation_mailer.notify_user.subject
-  #
-  def notify_user
-    @greeting = 'Hi'
-
-    mail to: 'to@example.org'
+  def notify_user(invitation)
+    @invitation = invitation
+    mail to: invitation.email, subject: "User #{invitation.issuer.email} invited you to SCC"
   end
 end

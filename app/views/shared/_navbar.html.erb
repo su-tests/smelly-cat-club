@@ -1,19 +1,29 @@
 <div class="top-bar">
   <div class="top-bar-title">
-    <strong>Smelly Cat Club</strong>
+    <strong>
+      <%= link_to root_path do %>
+        Smelly Cat Club
+      <% end %>
+    </strong>
   </div>
-  <div id="responsive-menu">
-    <div class="top-bar-right">
-      <ul class="menu">
-        <% if user_signed_in? %>
+  <% if user_signed_in? %>
+    <div id="responsive-menu">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li><%= link_to 'Invite Your Friend', new_invitation_path %></li>
+          <li><%= link_to 'My Invitations', invitations_path %></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
           <li>Hello <%= current_user.email %>!</li>
           <li>
             <%= link_to destroy_user_session_path, method: :delete do %>
               Log out
             <% end %>
           </li>
-        <% end %>
-      </ul>
+        </ul>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>

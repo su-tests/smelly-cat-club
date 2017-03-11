@@ -1,0 +1,8 @@
+<h1>Invite Your Friend</h1>
+
+<%= form_tag invitations_path do %>
+  <%= label_tag 'invitation[email]', 'Email' %>
+  <%= email_field_tag 'invitation[email]', nil, placeholder: 'email' %>
+
+  <%= submit_tag 'Invite', class: 'button' %>
+<% end %>
