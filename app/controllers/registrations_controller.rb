@@ -1,16 +1,14 @@
+# frozen_string_literal: true
 class RegistrationsController < ApplicationController
   skip_before_action :authenticate_user!
+  before_action :set_invitation
 
-  def new
-    @invitation = Invitation.find_by token: params[:token]
-  end
+  def new; end
 
   def create
-    @invitation = Invitation.find_by token: params[:token]
-
     @user = User.new user_params
     @user.email = @invitation.email
-    @user.confirmed_at = Time.now
+    @user.confirmed_at = Time.zone.now
 
     if @user.save
       sign_in @user
@@ -22,6 +20,10 @@ class RegistrationsController < ApplicationController
   end
 
   private
+
+  def set_invitation
+    @invitation = Invitation.find_by token: params[:token]
+  end
 
   def user_params
     params.require(:registration).permit(:password, :password_confirmation)

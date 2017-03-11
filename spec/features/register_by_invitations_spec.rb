@@ -1,6 +1,7 @@
+# frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.feature "RegisterByInvitations", type: :feature do
+RSpec.feature 'RegisterByInvitations', type: :feature do
   let(:issuer) { create :user, email: 'old.user@example.com' }
   let(:invitation) { create :invitation, issuer: issuer }
 

@@ -10,7 +10,6 @@ module ApplicationHelper
 
   private
 
-
   def foundation_flash_class(type)
     case type.to_sym
     when :error
