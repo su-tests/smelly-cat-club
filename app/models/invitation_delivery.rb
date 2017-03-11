@@ -9,7 +9,7 @@ class InvitationDelivery
   def deliver!
     return if been_sent_recently?
     @invitation.update_attributes sent_at: Time.zone.now
-    InvitationMailer.notify_user.deliver_later
+    InvitationMailer.notify_user(@invitation).deliver_later
   end
 
   private

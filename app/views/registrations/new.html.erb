@@ -1,0 +1,9 @@
+<h1>Register by invitation</h1>
+
+<%= form_tag url_for(action: :create), method: :post do %>
+  <%= hidden_field_tag 'token', @invitation.token %>
+  <%= text_field_tag 'registration[email]', @invitation.email, disabled: :disabled %>
+  <%= password_field_tag 'registration[password]', nil, placeholder: 'Password' %>
+  <%= password_field_tag 'registration[password_confirmation]', nil, placeholder: 'Password confirmation' %>
+  <%= submit_tag 'Sign up', class: :button %>
+<% end %>
