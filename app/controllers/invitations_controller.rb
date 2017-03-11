@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 class InvitationsController < ApplicationController
   def index
-    @invitations = Invitation.where(issuer: current_user)
+    @invitations = Invitation.where(issuer: current_user).order('created_at DESC')
   end
 
   def new; end

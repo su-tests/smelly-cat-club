@@ -1,14 +1,16 @@
 <h1>Invitations</h1>
 
 <table>
-  <th>Email</th>
   <th>Date</th>
+  <th>Email</th>
+  <th>Status</th>
 
   <tbody class='invitations'>
     <% @invitations.each do |invitation| %>
       <tr class='invitation'>
+        <td><%= l invitation.created_at %></td>
         <td class='email'><%= invitation.email %></td>
-        <td><%= invitation.created_at %></td>
+        <td class='status'><%= invitation.state %></td>
       </tr>
     <% end %>
   </tbody>
