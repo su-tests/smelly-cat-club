@@ -13,9 +13,9 @@ class InvitationGenerator
     invitation.issuer = @issuer
     invitation.email = @email
 
-    invitation.save!
+    invitation.save
 
-    invitation
+    [invitation, invitation.errors.full_messages]
   end
 
   private

@@ -31,6 +31,12 @@ RSpec.describe InvitationsController, type: :controller do
         post :create, invitation: { email: 'foo@example.com' }
       end.to change { InvitationMailer.deliveries.count }.by(1)
     end
+
+    it 'should not raise error when email is empty' do
+      expect do
+        post :create, invitation: { email: '' }
+      end.not_to raise_error
+    end
   end
 
   describe 'POST resend' do

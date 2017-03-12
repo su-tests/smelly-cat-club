@@ -14,7 +14,11 @@ RSpec.describe InvitationGenerator, type: :model do
     end
 
     describe 'invitation' do
-      subject { invitation_generator.generate! }
+      subject do
+        invitation, _ = invitation_generator.generate!
+
+        invitation
+      end
 
       its(:issuer) { is_expected.to eq issuer }
       its(:email) { is_expected.to eq email }

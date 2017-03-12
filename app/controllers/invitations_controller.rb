@@ -10,10 +10,22 @@ class InvitationsController < ApplicationController
 
   def create
     invitation_generator = InvitationGenerator.new(issuer: current_user, email: invitation_params[:email])
-    invitation = invitation_generator.generate!
+    invitation, errors = invitation_generator.generate!
+
+    if errors.present?
+      flash[:alert] = errors.join('. ')
+      render :new
+      return
+    end
 
     invitation_delivery = InvitationDelivery.new invitation
-    invitation_delivery.deliver!
+    _, errors = invitation_delivery.deliver!
+
+    if errors.present?
+      flash[:alert] = errors.join('. ')
+      render :new
+      return
+    end
 
     flash[:notice] = "Invitation sent to #{invitation.email}"
 
