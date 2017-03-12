@@ -6,6 +6,11 @@ RSpec.describe InvitationsController, type: :controller do
   before { sign_in current_user }
 
   describe 'GET #index' do
+    render_views
+    let!(:invitation_new) { create :invitation, issuer: current_user }
+    let!(:invitation_pending) { create :invitation, :pending, issuer: current_user }
+    let!(:invitation_registered) { create :invitation, :registered, issuer: current_user }
+
     it 'returns http success' do
       get :index
       expect(response).to have_http_status(:success)
