@@ -14,7 +14,7 @@ class RegistrationsController < ApplicationController
       sign_in @user
       redirect_to root_path
     else
-      flash[:alert] = @user.errors.full_messages
+      flash[:alert] = @user.errors.full_messages.join('. ')
       render :new
     end
   end
