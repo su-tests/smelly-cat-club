@@ -12,4 +12,12 @@ class Invitation < ActiveRecord::Base
       'pending'
     end
   end
+
+  def pending?
+    state == 'pending'
+  end
+
+  def registered?
+    state == 'registered'
+  end
 end

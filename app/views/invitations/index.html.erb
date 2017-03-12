@@ -1,16 +1,19 @@
 <h1>Invitations</h1>
 
 <table>
-  <th>Date</th>
+  <th>#</th>
+  <th>Sent At</th>
   <th>Email</th>
   <th>Status</th>
 
   <tbody class='invitations'>
     <% @invitations.each do |invitation| %>
       <tr class='invitation'>
-        <td><%= l invitation.created_at %></td>
+        <td><%= invitation.id %></td>
+        <td><%= l invitation.sent_at %></td>
         <td class='email'><%= invitation.email %></td>
         <td class='status'><%= invitation.state %></td>
+        <td><%= link_to 'resend', resend_invitation_path(invitation), method: :post, class: "button #{:disabled if invitation.registered?}" %></td>
       </tr>
     <% end %>
   </tbody>

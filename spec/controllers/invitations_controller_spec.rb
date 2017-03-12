@@ -32,4 +32,40 @@ RSpec.describe InvitationsController, type: :controller do
       end.to change { InvitationMailer.deliveries.count }.by(1)
     end
   end
+
+  describe 'POST resend' do
+    context 'when last sent_at is long time ago' do
+      let(:invitation) { create :invitation, issuer: current_user, sent_at: 2.days.ago }
+
+      it 'should send mail' do
+        expect do
+          post :resend, id: invitation.id
+        end.to change { InvitationMailer.deliveries.count }.by(1)
+
+        expect(flash[:notice]).to include 'Invitation sent'
+      end
+    end
+
+    context 'when sent recently' do
+      let(:invitation) { create :invitation, issuer: current_user, sent_at: 2.hours.ago }
+
+      it 'should not send mail' do
+        expect do
+          post :resend, id: invitation.id
+        end.not_to change { InvitationMailer.deliveries.count }
+
+        expect(flash[:alert]).to include "Can't send invitation"
+      end
+    end
+
+    context 'when invitation owned by another user' do
+      let(:invitation) { create :invitation, issuer: create(:user) }
+
+      it 'should fail' do
+        expect do
+          post :resend, id: invitation.id
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end

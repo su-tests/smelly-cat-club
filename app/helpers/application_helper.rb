@@ -12,11 +12,11 @@ module ApplicationHelper
 
   def foundation_flash_class(type)
     case type.to_sym
-    when :error
-      :alert
     when :alert
-      :warning
+      :alert
     when :notice
+      :primary
+    else
       :primary
     end
   end

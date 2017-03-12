@@ -13,7 +13,22 @@ class InvitationsController < ApplicationController
     invitation_delivery = InvitationDelivery.new invitation
     invitation_delivery.deliver!
 
-    flash[:info] = "Invitation sent to #{invitation.email}"
+    flash[:notice] = "Invitation sent to #{invitation.email}"
+
+    redirect_to invitations_path
+  end
+
+  def resend
+    @invitation = Invitation.where(issuer: current_user).find params[:id]
+
+    invitation_delivery = InvitationDelivery.new @invitation
+    _, errors = invitation_delivery.deliver!
+
+    if errors.blank?
+      flash[:notice] = "Invitation sent to #{@invitation.email}"
+    else
+      flash[:alert] = errors.join('. ')
+    end
 
     redirect_to invitations_path
   end
