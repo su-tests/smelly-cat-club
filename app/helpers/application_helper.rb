@@ -16,7 +16,6 @@ module ApplicationHelper
       :alert
     when :notice
       :primary
-    else
     end
   end
 end
