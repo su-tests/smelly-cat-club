@@ -34,7 +34,3 @@ $ rails server
 ## Test
 
 ```bundle exec rake```
-
-## Demo
-
-![](demo.gif)
