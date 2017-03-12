@@ -16,6 +16,12 @@ rake db:setup
 rails server
 ```
 
+## Test
+
+```bundle exec rake```
+
+![](test.gif)
+
 ## Demo
 
 ![](demo.gif)
