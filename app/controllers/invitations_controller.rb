@@ -10,24 +10,14 @@ class InvitationsController < ApplicationController
 
   def create
     invitation_generator = InvitationGenerator.new(issuer: current_user, email: invitation_params[:email])
-    invitation, errors = invitation_generator.generate!
+    @invitation, errors = invitation_generator.generate!
 
-    if errors.present?
-      flash[:alert] = errors.join('. ')
-      render :new
-      return
+    if errors.blank?
+      invitation_delivery = InvitationDelivery.new @invitation
+      _, errors = invitation_delivery.deliver!
     end
 
-    invitation_delivery = InvitationDelivery.new invitation
-    _, errors = invitation_delivery.deliver!
-
-    if errors.present?
-      flash[:alert] = errors.join('. ')
-      render :new
-      return
-    end
-
-    flash[:notice] = "Invitation sent to #{invitation.email}"
+    render_flash errors
 
     redirect_to invitations_path
   end
@@ -36,16 +26,20 @@ class InvitationsController < ApplicationController
     invitation_delivery = InvitationDelivery.new @invitation
     _, errors = invitation_delivery.deliver!
 
-    if errors.blank?
-      flash[:notice] = "Invitation sent to #{@invitation.email}"
-    else
-      flash[:alert] = errors.join('. ')
-    end
+    render_flash errors
 
     redirect_to invitations_path
   end
 
   private
+
+  def render_flash(errors)
+    if errors.blank?
+      flash[:notice] = "Invitation sent to #{@invitation.email}"
+    else
+      flash[:alert] = errors.join('. ')
+    end
+  end
 
   def set_invitation
     @invitation = Invitation.where(issuer: current_user).find params[:id]

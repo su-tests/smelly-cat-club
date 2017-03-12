@@ -15,7 +15,7 @@ RSpec.describe InvitationGenerator, type: :model do
 
     describe 'invitation' do
       subject do
-        invitation, _ = invitation_generator.generate!
+        invitation, = invitation_generator.generate!
 
         invitation
       end

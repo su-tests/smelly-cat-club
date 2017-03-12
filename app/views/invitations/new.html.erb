@@ -2,7 +2,7 @@
 
 <%= form_tag invitations_path do %>
   <%= label_tag 'invitation[email]', 'Email' %>
-  <%= email_field_tag 'invitation[email]', nil, placeholder: 'email' %>
+  <%= email_field_tag 'invitation[email]', nil, placeholder: 'email', required: true %>
 
   <%= submit_tag 'Invite', class: 'button' %>
 <% end %>

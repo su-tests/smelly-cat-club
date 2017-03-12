@@ -13,7 +13,7 @@
         <td><%= l invitation.sent_at %></td>
         <td class='email'><%= invitation.email %></td>
         <td class='status'><%= invitation.state %></td>
-        <td><%= link_to 'resend', resend_invitation_path(invitation), method: :post, class: "button #{:disabled if invitation.registered?}" %></td>
+        <td><%= link_to 'resend', resend_invitation_path(invitation), method: :post, class: "hollow button small #{:disabled if invitation.registered?}" %></td>
       </tr>
     <% end %>
   </tbody>
