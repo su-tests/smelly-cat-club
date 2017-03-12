@@ -20,7 +20,7 @@ rails server
 
 ```bundle exec rake```
 
-![](test.gif)
+![](test.png)
 
 ## Demo
 
