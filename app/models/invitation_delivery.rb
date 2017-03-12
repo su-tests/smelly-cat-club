@@ -7,7 +7,7 @@ class InvitationDelivery
   end
 
   def deliver!
-    return [false, ["User is already registered"]] if already_registered?
+    return [false, ['User is already registered']] if already_registered?
     return [false, ["Can't send invitation until #{I18n.localize next_allowed_time}"]] if been_sent_recently?
     @invitation.update_attributes sent_at: Time.zone.now
     InvitationMailer.notify_user(@invitation).deliver_later
@@ -18,8 +18,8 @@ class InvitationDelivery
   private
 
   def next_allowed_time
-    return Time.now if @invitation.sent_at.blank?
-    
+    return Time.zone.now if @invitation.sent_at.blank?
+
     @invitation.sent_at + THROTTLE_DAYS.days
   end
 

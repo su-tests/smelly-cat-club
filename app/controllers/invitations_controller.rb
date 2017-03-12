@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 class InvitationsController < ApplicationController
+  before_action :set_invitation, only: :resend
+
   def index
     @invitations = Invitation.where(issuer: current_user).order('created_at DESC')
   end
@@ -19,8 +21,6 @@ class InvitationsController < ApplicationController
   end
 
   def resend
-    @invitation = Invitation.where(issuer: current_user).find params[:id]
-
     invitation_delivery = InvitationDelivery.new @invitation
     _, errors = invitation_delivery.deliver!
 
@@ -34,6 +34,10 @@ class InvitationsController < ApplicationController
   end
 
   private
+
+  def set_invitation
+    @invitation = Invitation.where(issuer: current_user).find params[:id]
+  end
 
   def invitation_params
     params.require(:invitation).permit(:email)
