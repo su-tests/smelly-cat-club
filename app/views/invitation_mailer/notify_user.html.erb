@@ -5,4 +5,4 @@
 <p>User old.user@example.com invited you</p>
 
 
-<p><%= link_to 'Click here to register', register_by_token_url(@invitation.token), class: 'invitation-link' %></p>
+<p><%= link_to 'Click here to register', new_registration_url(token: @invitation.token), class: 'invitation-link' %></p>
