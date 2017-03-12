@@ -31,6 +31,16 @@ $ rake db:setup
 $ rails server
 ```
 
+### Invitations Noise Protection
+
+By default it is not allowed to re-send invitations by emails more often than once a day. But you can set this value in days.
+
+```bash
+export INVITATION_DELIVERY_THROTTLE_DAYS=10
+```
+
+Default: 1
+
 ## Test
 
 ```bundle exec rake```

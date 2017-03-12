@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 class InvitationDelivery
-  THROTTLE_DAYS = 1
+  THROTTLE_DAYS = (ENV['INVITATION_DELIVERY_THROTTLE_DAYS'] || 1).to_i.freeze
 
   def initialize(invitation)
     @invitation = invitation
