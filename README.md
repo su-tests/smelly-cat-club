@@ -20,8 +20,6 @@ rails server
 
 ```bundle exec rake```
 
-![](test.png)
-
 ## Demo
 
 ![](demo.gif)
