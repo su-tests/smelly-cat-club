@@ -72,10 +72,9 @@ RSpec.describe InvitationsController, type: :controller do
     context 'when invitation owned by another user' do
       let(:invitation) { create :invitation, issuer: create(:user) }
 
-      it 'should fail' do
-        expect do
-          post :resend, id: invitation.id
-        end.to raise_error(ActiveRecord::RecordNotFound)
+      it 'should render not found' do
+        post :resend, id: invitation.id
+        expect(response).to have_http_status(:not_found)
       end
     end
   end

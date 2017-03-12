@@ -23,6 +23,7 @@ class RegistrationsController < ApplicationController
 
   def set_invitation
     @invitation = Invitation.find_by token: params[:token]
+    raise ActiveRecord::RecordNotFound if @invitation.blank?
   end
 
   def user_params

@@ -9,6 +9,13 @@ RSpec.describe RegistrationsController, type: :controller do
       get :new, token: invitation.token
       expect(response).to have_http_status(:success)
     end
+
+    context 'when invitation not found' do
+      it 'should return 404' do
+        get :new, token: 'foobar'
+        expect(response).to have_http_status(:not_found)
+      end
+    end
   end
 
   describe 'POST #create' do
