@@ -6,6 +6,10 @@
 [![Code Climate](https://lima.codeclimate.com/github/su-tests/smelly-cat-club/badges/gpa.svg)](https://lima.codeclimate.com/github/su-tests/smelly-cat-club)
 [![Issue Count](https://lima.codeclimate.com/github/su-tests/smelly-cat-club/badges/issue_count.svg)](https://lima.codeclimate.com/github/su-tests/smelly-cat-club)
 
+## Requirements
+
+Ruby >= 2.1.0
+
 ## Install
 
 ```bash
