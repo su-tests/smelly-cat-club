@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :registrations, only: [:new, :create]
+  resources :refferals, controller: :registrations, only: [:new, :create]
 
   devise_for :users
   root to: 'club#catty'
